@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pathfinder: career match and roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f5f7;--card:#fff;--ink:#14212b;--mute:#5d6e7a;--line:#d5dee3;--acc:#0f6e6e;--hi:#c77d12;--soft:#dcecec;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f171c;--card:#172229;--ink:#e8eef2;--mute:#97a8b3;--line:#2a3a44;--acc:#4fc3c3;--hi:#f0b24f;--soft:#1d3a3c}}
+:root[data-theme="dark"]{--bg:#0f171c;--card:#172229;--ink:#e8eef2;--mute:#97a8b3;--line:#2a3a44;--acc:#4fc3c3;--hi:#f0b24f;--soft:#1d3a3c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Bricolage Grotesque",system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.05;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:20px;margin:0 0 4px;font-weight:600}
+p.lead{color:var(--mute);margin:0 0 26px;max-width:56ch}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:16px}
+.sub{color:var(--mute);font-size:14px;margin:0 0 14px}
+.row{display:grid;grid-template-columns:1fr 150px;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row b{font-weight:600}.row span{display:block;color:var(--mute);font-size:13px}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:14px;padding:7px 12px;border-radius:999px;cursor:pointer}
+.chip[data-l="1"]{background:var(--soft);border-color:var(--acc)}
+.chip[data-l="2"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+:root[data-theme="dark"] .chip[data-l="2"]{color:#0f171c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[data-l="2"]{color:#0f171c}}
+.chip:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+.legend{font-size:13px;color:var(--mute);margin-top:10px}
+.career{border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:12px}
+summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+.name{font-weight:800;font-size:19px}
+.band{font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--soft);color:var(--acc)}
+.band.good{background:transparent;border:1px solid var(--acc)}
+.band.stretch{background:transparent;border:1px dashed var(--hi);color:var(--hi)}
+.why{grid-column:1/-1;color:var(--mute);font-size:14px}
+.body{padding:0 18px 18px;border-top:1px solid var(--line)}
+.bars{display:grid;gap:8px;margin:14px 0}
+.bar{display:grid;grid-template-columns:96px 1fr 38px;gap:10px;align-items:center;font-size:14px}
+.track{height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.fill{height:100%;background:var(--acc)}
+.fill.d{background:var(--hi)}
+h3{font-size:15px;margin:16px 0 6px}
+ol{margin:0;padding-left:20px}li{margin-bottom:4px}
+.have{color:var(--acc)}.gap{color:var(--hi);font-weight:600}
+.btns{display:flex;gap:10px;margin-top:6px}
+button.go{font:600 16px inherit;font-family:inherit;background:var(--acc);color:#fff;border:0;padding:12px 20px;border-radius:8px;cursor:pointer}
+:root[data-theme="dark"] button.go{color:#0f171c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.go{color:#0f171c}}
+button.ghost{font:inherit;background:transparent;color:var(--mute);border:1px solid var(--line);padding:12px 16px;border-radius:8px;cursor:pointer}
+.note{font-size:13px;color:var(--mute);margin-top:22px}
+.plan h1{font-size:clamp(26px,5vw,36px)}
+.ph{border-left:3px solid var(--acc);padding-left:14px;margin:0 0 20px}
+.ph h3{margin:0 0 2px;font-size:17px}.ph .sub{margin:0 0 8px}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:5px 0;cursor:pointer}
+.ck input{margin-top:5px;accent-color:var(--acc);width:17px;height:17px;flex:none}
+.ck input:checked+span{text-decoration:line-through;color:var(--mute)}
+.prog{height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin:8px 0 4px}
+.prog div{height:100%;background:var(--acc);transition:width .25s}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.tags span{font-size:13px;border:1px solid var(--line);padding:3px 10px;border-radius:999px}
+button.pick{margin-top:14px;font:600 15px inherit;font-family:inherit;background:var(--acc);color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer}
+:root[data-theme="dark"] button.pick{color:#0f171c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.pick{color:#0f171c}}
+@media (max-width:520px){.row{grid-template-columns:1fr}.bar{grid-template-columns:80px 1fr 34px}}
+</style></head>
+<body><main>
+<h1 align="center"><B>PATHFINDER</B></h1>
+<p class="lead">Tell us what you enjoy and what you already know. We rank careers by fit, show the skills you still need, and give you a roadmap.</p>
+
+<div id="form">
+<section><h2>1. What do you enjoy?</h2><p class="sub">Slide from 1 (not me) to 5 (very me).</p><div id="interests"></div></section>
+<section><h2>2. What can you already do?</h2><p class="sub">Tap a skill once for basic, twice for solid, three times to clear it.</p><div class="chips" id="skills"></div>
+<p class="legend">Be honest. Overrating yourself only hides the gaps you need to close.</p></section>
+<section><h2>3. What matters most?</h2><p class="sub">Move these to match your priorities.</p><div id="weights"></div></section>
+<div class="btns"><button class="go" id="run">Show my careers</button></div>
+</div>
+
+<div id="results" hidden>
+<div class="btns" style="margin-bottom:14px"><button class="ghost" id="back">Edit my answers</button></div>
+<section><h2>Your priorities</h2><p class="sub">Results update as you move these.</p><div id="weights2"></div></section>
+<div id="list"></div>
+</div>
+
+<div id="plan" class="plan" hidden></div>
+<p class="note">Demand scores are illustrative estimates for the Indian market, not live data. Replace the numbers in the CAREERS list with current job-posting data before relying on them. Fit bands are guides, not predictions.</p>
+</main>
+<script>
+const INT=[["Hands-on","Building, fixing, working with tools or machines"],["Investigative","Researching, analysing data, solving puzzles"],["Creative","Designing, writing, making original things"],["Social","Teaching, helping, working with people"],["Enterprising","Persuading, leading, running things"],["Organised","Structure, accuracy, clear processes"]];
+const SK=["Python","SQL","Statistics","Excel","JavaScript","React","Design tools","Communication","Cloud","Networking","Writing","Sales","Project management","Machine learning","Security basics"];
+// interest vector order matches INT; skills: required level 1-2; demand 0-100 (illustrative)
+const CAREERS=[
+{n:"Data Analyst",i:[1,5,2,2,2,4],s:{SQL:2,Excel:2,Statistics:1,Python:1,Communication:1},d:82,r:["Master Excel and SQL on real datasets","Learn Python with pandas","Build 3 dashboard projects from public data","Publish a case study and apply to analyst roles"]},
+{n:"Machine Learning Engineer",i:[2,5,3,1,2,3],s:{Python:2,"Machine learning":2,Statistics:2,SQL:1,Cloud:1},d:88,r:["Solid Python and statistics","Complete a supervised learning course and 2 projects","Learn model deployment on a cloud platform","Contribute to an open-source ML repo"]},
+{n:"Full-Stack Developer",i:[3,3,3,1,2,3],s:{JavaScript:2,React:2,SQL:1,Cloud:1,Communication:1},d:90,r:["Core JavaScript, then React","Build a CRUD app with a database","Deploy it and add authentication","Ship 2 portfolio apps and practise interviews"]},
+{n:"UI/UX Designer",i:[1,2,5,4,2,2],s:{"Design tools":2,Communication:2,Writing:1,Research:0},d:70,r:["Learn design principles and a tool like Figma","Redesign 2 existing apps as case studies","Run a small usability test with 5 people","Build a portfolio site with process write-ups"]},
+{n:"Cloud / DevOps Engineer",i:[4,3,1,1,2,4],s:{Cloud:2,Networking:2,Python:1,"Security basics":1},d:86,r:["Linux, networking and scripting basics","Earn one entry cloud certification","Build a CI/CD pipeline for a sample app","Practise infrastructure-as-code projects"]},
+{n:"Cybersecurity Analyst",i:[3,4,1,1,2,4],s:{"Security basics":2,Networking:2,Python:1,Communication:1},d:84,r:["Networking and operating system fundamentals","Study for a security entry certification","Practise on legal labs and capture-the-flag events","Write up findings and apply to SOC roles"]},
+{n:"Digital Marketer",i:[1,2,4,3,5,2],s:{Writing:2,Communication:2,Excel:1,Sales:1},d:75,r:["Learn SEO, ads and analytics basics","Run a small paid campaign for a real page","Track results in a spreadsheet","Build a portfolio showing measured outcomes"]},
+{n:"Sales / Business Development",i:[1,1,2,4,5,2],s:{Sales:2,Communication:2,Excel:1},d:78,r:["Learn consultative selling and objection handling","Practise cold outreach and discovery calls","Learn a CRM tool","Apply for inside-sales roles to build a track record"]},
+{n:"Project / Product Manager",i:[1,3,3,4,5,4],s:{"Project management":2,Communication:2,Excel:1,SQL:1},d:76,r:["Learn agile and roadmapping fundamentals","Lead a small project end to end","Write a product spec and a metrics plan","Move into an associate PM or coordinator role"]},
+{n:"Content Writer / Editor",i:[1,2,5,3,2,3],s:{Writing:2,Communication:1,"Design tools":1},d:55,r:["Write 10 samples in one niche","Learn SEO and editing basics","Publish consistently on a blog","Pitch freelance or junior editor roles"]},
+{n:"Accountant / Finance Analyst",i:[1,3,1,2,3,5],s:{Excel:2,Statistics:1,Communication:1,SQL:1},d:68,r:["Accounting fundamentals and a recognised qualification","Advanced Excel and financial modelling","Learn SQL for reporting","Apply for analyst or audit-associate roles"]},
+{n:"Teacher / Trainer",i:[1,2,3,5,3,3],s:{Communication:2,Writing:1,"Project management":1},d:60,r:["Pick a subject and learn how to design lessons","Tutor or run workshops for practice","Get the credential your path requires","Build a reputation with recorded sessions"]}
+];
+const state={int:[3,3,3,3,3,3],sk:{},w:{int:50,skill:50,dem:30}};
+const $=id=>document.getElementById(id);
+function slider(parent,label,desc,val,cb,min=1,max=5){const r=document.createElement("div");r.className="row";r.innerHTML=`<div><b>${label}</b><span>${desc}</span></div><input type="range" min="${min}" max="${max}" value="${val}" aria-label="${label}">`;r.querySelector("input").oninput=e=>cb(+e.target.value);parent.appendChild(r)}
+INT.forEach((x,k)=>slider($("interests"),x[0],x[1],3,v=>state.int[k]=v));
+SK.forEach(s=>{const b=document.createElement("button");b.className="chip";b.dataset.l=0;b.textContent=s;b.onclick=()=>{const l=((state.sk[s]||0)+1)%3;state.sk[s]=l;b.dataset.l=l;b.setAttribute("aria-label",s+", level "+l)};$("skills").appendChild(b)});
+function weightUI(parent){parent.innerHTML="";[["Interest fit","What I enjoy","int"],["Skill fit","What I already know","skill"],["Market demand","Where jobs are growing","dem"]].forEach(w=>slider(parent,w[0],w[1],state.w[w[2]],v=>{state.w[w[2]]=v;render()},0,100))}
+function cos(a,b){let d=0,x=0,y=0;a.forEach((v,i)=>{d+=v*b[i];x+=v*v;y+=b[i]*b[i]});return d/Math.sqrt(x*y)}
+function score(c){
+ const iF=Math.max(0,Math.min(1,(cos(state.int,c.i)-.6)/.4));
+ let got=0,tot=0,have=[],gap=[],weeks=0;
+ Object.entries(c.s).forEach(([k,req])=>{if(!req)return;const u=state.sk[k]||0;tot+=req;got+=Math.min(u,req);
+  if(u>=req)have.push(k);else{gap.push([k,req,u]);weeks+=(req-u)*4}});
+ const sF=tot?got/tot:0,dF=c.d/100,W=state.w,ws=W.int+W.skill+W.dem||1;
+ const final=(W.int*iF+W.skill*sF+W.dem*dF)/ws;
+ return{c,iF,sF,dF,final,have,gap,weeks}}
+function band(f){return f>=.68?["Strong fit",""]:f>=.5?["Good fit","good"]:["Stretch","stretch"]}
+function why(r){const b=[];if(r.iF>.75)b.push("matches your interests");else if(r.iF<.4)b.push("weak match with your interests");
+ if(r.sF>.7)b.push("you already have most of the skills");else if(r.gap.length)b.push(r.gap.length+" skill gap"+(r.gap.length>1?"s":"")+" to close");
+ if(r.dF>.8)b.push("strong hiring demand");return b.length?b.join("; ")+".":""}
+function bar(l,v,d){return`<div class="bar"><span>${l}</span><div class="track"><div class="fill ${d?"d":""}" style="width:${Math.round(v*100)}%"></div></div><span>${Math.round(v*100)}</span></div>`}
+
+const GUIDE={
+"Data Analyst":{x:"Take a free public dataset and answer 3 questions with a spreadsheet pivot table. Notice if you enjoy it.",p:"A sales or public-health dashboard with a written findings summary",t:["Data Analyst","Business Analyst","MIS Executive"]},
+"Machine Learning Engineer":{x:"Train a simple classifier on a small dataset in a notebook. See if debugging models feels interesting.",p:"An end-to-end model with a small web API that serves predictions",t:["ML Engineer","Junior Data Scientist","AI Engineer"]},
+"Full-Stack Developer":{x:"Follow a beginner tutorial and build one working web page with a form. See if building excites you.",p:"A full app with login, a database and deployment, such as an expense tracker",t:["Junior Web Developer","Full Stack Intern","Software Engineer Trainee"]},
+"UI/UX Designer":{x:"Redesign one screen of an app you use daily and explain each choice in 5 lines.",p:"Two case studies showing problem, process, test results and final design",t:["UI Designer","UX Designer","Product Designer Intern"]},
+"Cloud / DevOps Engineer":{x:"Install Linux in a VM, host a small site on a free cloud tier, and fix whatever breaks.",p:"A CI/CD pipeline that tests and deploys a sample app automatically",t:["Cloud Support Associate","DevOps Trainee","Site Reliability Intern"]},
+"Cybersecurity Analyst":{x:"Complete a beginner room on a legal practice platform and write down what you found.",p:"A home-lab write-up detecting simulated attacks, with a short incident report",t:["SOC Analyst L1","Security Analyst Trainee","Information Security Associate"]},
+"Digital Marketer":{x:"Pick a local shop, write 3 posts and one ad draft for it, then see how it feels to measure results.",p:"A real campaign with budget, results and what you learned",t:["Digital Marketing Executive","SEO Executive","Social Media Executive"]},
+"Sales / Business Development":{x:"Role-play 3 cold outreach messages to people in a field you know and note which feel natural.",p:"A documented outreach experiment: messages sent, replies, meetings booked",t:["Business Development Executive","Inside Sales Representative","Sales Trainee"]},
+"Project / Product Manager":{x:"Plan a small real event or project with tasks, owners and deadlines, then run it.",p:"A product spec for an improvement to an app you use, with success metrics",t:["Project Coordinator","Associate Product Manager","Business Analyst"]},
+"Content Writer / Editor":{x:"Write one 600-word article in a niche and edit it twice. See if the process is satisfying.",p:"A public blog or portfolio of 10 polished pieces in one niche",t:["Content Writer","Copy Editor","Content Marketing Executive"]},
+"Accountant / Finance Analyst":{x:"Build a simple monthly budget model in a spreadsheet and reconcile it against sample figures.",p:"A financial model of a small business with scenarios and a summary",t:["Accounts Executive","Finance Analyst","Audit Associate"]},
+"Teacher / Trainer":{x:"Teach one concept to a friend in 15 minutes and ask what was unclear.",p:"A recorded mini-course or workshop with a feedback summary",t:["Subject Tutor","Corporate Trainer","Learning and Development Associate"]}};
+let cur=null;
+function store(k,v){try{if(v===undefined)return localStorage.getItem("pf:"+k);localStorage.setItem("pf:"+k,v)}catch(e){return null}}
+function plan(i){
+ const c=CAREERS[i],r=score(c),g=GUIDE[c.n];cur=i;
+ const ph=[
+ ["Test it first","Week 1. Spend a few hours before committing months.",[g.x]],
+ ["Close your skill gaps",r.gap.length?"About "+r.weeks+" weeks at roughly 5 hours a week.":"You already cover the core skills.",r.gap.length?r.gap.map(x=>`${x[0]}: go from ${["none","basic"][x[2]]||"basic"} to ${x[1]==2?"solid":"basic"} (about ${(x[1]-x[2])*4} weeks)`):["Refresh your strongest skill with one small project to stay sharp"]],
+ ["Build proof","Employers hire evidence. Finish these in order.",c.r.concat(["Portfolio project: "+g.p])],
+ ["Get hired","Start applying while you finish phase 3. Do not wait to feel ready.",["Search for these titles: "+g.t.join(", "),"Tailor your resume to each posting using its own keywords","Send 5 applications and 2 networking messages every week","Do 3 mock interviews and explain your portfolio project aloud","Review rejections monthly and fix the most common gap"]]];
+ let n=0,done=0;
+ const html=ph.map((p,a)=>`<div class="ph"><h3>${p[0]}</h3><p class="sub">${p[1]}</p>`+p[2].map((t,b)=>{const id=c.n+"|"+a+"|"+b;const on=store(id)==="1";n++;if(on)done++;
+  return`<label class="ck"><input type="checkbox" data-id="${id}" ${on?"checked":""}><span>${t}</span></label>`}).join("")+"</div>").join("");
+ $("plan").innerHTML=`<div class="btns" style="margin-bottom:14px"><button class="ghost" id="pb">Back to results</button></div>
+ <h1>${c.n}</h1><p class="lead">Your step-by-step path. Tick items as you finish them.</p>
+ <section><b id="pt"></b><div class="prog"><div id="pg"></div></div>${html}
+ <h3>Check before you commit</h3><p class="sub">If the week 1 test felt draining rather than interesting, go back and compare another career.</p>
+ <div class="tags">${g.t.map(t=>`<span>${t}</span>`).join("")}</div></section>`;
+ $("plan").dataset.total=n;
+ $("results").hidden=true;$("plan").hidden=false;prog();scrollTo(0,0);
+ $("pb").onclick=()=>{$("plan").hidden=true;$("results").hidden=false;scrollTo(0,0)};
+ $("plan").querySelectorAll("input").forEach(x=>x.onchange=()=>{store(x.dataset.id,x.checked?"1":"0");prog()})}
+function prog(){const a=[...$("plan").querySelectorAll("input")],d=a.filter(x=>x.checked).length;
+ $("pt").textContent=d+" of "+a.length+" steps done";$("pg").style.width=(a.length?d/a.length*100:0)+"%"}
+function render(){
+ const rs=CAREERS.map(score).sort((a,b)=>b.final-a.final).slice(0,6);
+ const open=[...document.querySelectorAll("#list details[open]")].map(d=>d.dataset.n);
+ $("list").innerHTML=rs.map(r=>{const[bl,bc]=band(r.final);
+  const gaps=r.gap.map(g=>`<li class="gap">${g[0]}: reach ${g[1]==2?"solid":"basic"} (you: ${["none","basic"][g[2]]||"basic"})</li>`).join("");
+  return`<details class="career" data-n="${r.c.n}" ${open.includes(r.c.n)?"open":""}><summary><span class="name">${r.c.n}</span><span class="band ${bc}">${bl}</span><span class="why">${why(r)}</span></summary>
+  <div class="body"><div class="bars">${bar("Interest",r.iF)}${bar("Skills",r.sF)}${bar("Demand",r.dF,1)}</div>
+  <h3>Skills</h3><ul style="margin:0;padding-left:20px">${r.have.map(h=>`<li class="have">${h}: you're covered</li>`).join("")}${gaps}</ul>
+  <h3>Roadmap${r.weeks?` (about ${r.weeks} weeks to close skill gaps at 5 hrs/week pace)`:""}</h3><ol>${r.c.r.map(s=>`<li>${s}</li>`).join("")}</ol><button class="pick" onclick="plan(${CAREERS.indexOf(r.c)})">Plan my path to this career</button></div></details>`}).join("")}
+$("run").onclick=()=>{$("form").hidden=true;$("results").hidden=false;weightUI($("weights2"));render();scrollTo(0,0)};
+$("back").onclick=()=>{$("results").hidden=true;$("form").hidden=false;scrollTo(0,0)};
+weightUI($("weights"));
+</script></body></html>
